@@ -62,3 +62,5 @@ end
 uniqueIDs = unique ( idArr );
 uniqueIDsCount = histcounts ( idArr, length ( uniqueIDs ) )';
 
+% Generate a generic structure to analyze scripts in vehnet library
+s = struct ( 'ts', timeStampArr, 'id', idArr, 'rdr', rdrArr, 'dlc', dlc, 'data', datafield, 'idlist', uniqueIDs );
