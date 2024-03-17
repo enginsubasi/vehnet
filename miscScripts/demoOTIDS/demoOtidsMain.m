@@ -64,3 +64,35 @@ uniqueIDsCount = histcounts ( idArr, length ( uniqueIDs ) )';
 
 % Generate a generic structure to analyze scripts in vehnet library
 s = struct ( 'ts', timeStampArr, 'id', idArr, 'rdr', rdrArr, 'dlc', dlc, 'data', datafield, 'idlist', uniqueIDs );
+
+% Show each data in seperated figures
+for i = 1 : 1 : size ( s.idlist, 1 )
+
+    figure;
+    title ( i );
+
+    [ rts, rdata ] = getMessageByIndex ( s, i );
+    plot ( rts, rdata );
+end
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Function definition section
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+function [ ms, data ] = getMessageByIndex ( s, msgidindex )
+
+    j = 1;
+    ms = zeros ( 1, 1 );
+    data = zeros ( 1, 1 );
+
+    for i = 1 : 1 : size ( s.ts )
+        if ( s.id ( i ) == s.idlist ( msgidindex ) )
+            ms ( j ) = s.ts ( i );
+            for k = 1 : 1 : size ( s.data, 2 )
+                data ( j, k ) = s.data ( i, k );
+            end
+            
+            j = j + 1;
+        end
+    end
+end
