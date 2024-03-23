@@ -8,10 +8,13 @@ close all;
 clear;
 clc;
 
+% File text
 text = fileread ( 'Attack_free_dataset_10k.txt' );
 
+% Lines of the text
 textLines = splitlines ( text );
 
+% Data fields to store in MATLAB
 timeStampArr = zeros ( size ( textLines, 1 ), 1 );
 idArr = zeros ( size ( textLines, 1 ), 1 );
 rdrArr = zeros ( size ( textLines, 1 ), 1 );
@@ -19,6 +22,7 @@ dlc = zeros ( size ( textLines, 1 ), 1 );
 datafield = zeros ( size ( textLines, 1 ), 8 );
 hexString = " ";
 
+% Main loop for collecting data from file to MATLAB
 for i = 1 : 1 : size ( textLines, 1 )
 
     str = string ( textLines ( i ) );
@@ -59,6 +63,7 @@ for i = 1 : 1 : size ( textLines, 1 )
     end
 end
 
+% To find unique message ids in the network
 uniqueIDs = unique ( idArr );
 uniqueIDsCount = histcounts ( idArr, length ( uniqueIDs ) )';
 
