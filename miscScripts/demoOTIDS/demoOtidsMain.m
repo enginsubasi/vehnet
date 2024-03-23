@@ -14,16 +14,20 @@ text = fileread ( 'Attack_free_dataset_10k.txt' );
 % Lines of the text
 textLines = splitlines ( text );
 
+sampleCount = size ( textLines, 1 );
+% Manual limit
+sampleCount = 1000; 
+
 % Data fields to store in MATLAB
-timeStampArr = zeros ( size ( textLines, 1 ), 1 );
-idArr = zeros ( size ( textLines, 1 ), 1 );
-rdrArr = zeros ( size ( textLines, 1 ), 1 );
-dlc = zeros ( size ( textLines, 1 ), 1 );
-datafield = zeros ( size ( textLines, 1 ), 8 );
+timeStampArr = zeros ( sampleCount, 1 );
+idArr = zeros ( sampleCount, 1 );
+rdrArr = zeros ( sampleCount, 1 );
+dlc = zeros ( sampleCount, 1 );
+datafield = zeros ( sampleCount, 8 );
 hexString = " ";
 
 % Main loop for collecting data from file to MATLAB
-for i = 1 : 1 : size ( textLines, 1 )
+for i = 1 : 1 : sampleCount
 
     str = string ( textLines ( i ) );
 
